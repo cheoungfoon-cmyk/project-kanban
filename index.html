@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>项目看板</title>
+  <style>
+    :root{--bg:#eef3f7;--panel:#fff;--ink:#172033;--muted:#68778b;--line:#dce4ee;--green:#2f7d68;--blue:#2f6fa3;--amber:#b7791f;--red:#b33b3b;--slate:#506177}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#f7fafc,#e9eff5);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif}.shell{display:grid;grid-template-columns:280px minmax(0,1fr);min-height:100vh}.side{background:#162234;color:white;padding:24px}.brand{display:flex;gap:12px;align-items:center;margin-bottom:28px}.mark{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#2f7d68,#4f8cc9);display:grid;place-items:center;font-weight:900}.brand p{margin:0;color:#9db0c8}.brand h1{margin:2px 0 0;font-size:24px}.search{width:100%;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.08);padding:12px 14px;color:white;outline:none}.nav,.filters{display:grid;gap:10px;margin-top:18px}.nav button,.filters button{border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(255,255,255,.07);color:#dbe6f2;padding:12px;text-align:left;font-weight:700}.nav button.active,.filters button.active{background:#2f7d68;color:white;border-color:#5fc1a9}.work{padding:28px;overflow:hidden}.hero{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:16px;padding:24px;box-shadow:0 18px 42px rgba(20,30,50,.08)}.eyebrow{margin:0 0 6px;color:#738197;font-weight:800}.hero h2{margin:0;font-size:44px}.hero p{margin:8px 0 0;color:var(--muted)}.stamp{white-space:nowrap;color:var(--muted);font-weight:800}.stats{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin:18px 0}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}.stat span{color:var(--muted);font-weight:800}.stat b{display:block;font-size:34px;margin-top:8px}.grid{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(340px,.75fr);gap:18px}.card{background:white;border:1px solid var(--line);border-radius:16px;box-shadow:0 14px 34px rgba(20,30,50,.07)}.head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid #edf1f6}.head h3{margin:0}.table{overflow:auto}.row{display:grid;grid-template-columns:1.4fr .55fr .75fr .7fr .95fr 1fr;gap:12px;align-items:center;min-width:900px;padding:14px 20px;border-bottom:1px solid #eef2f6}.row.header{color:#718096;font-size:13px;font-weight:900}.row.item{border:0;background:white;text-align:left;width:100%;cursor:pointer}.row.item:hover,.row.item.selected{background:#f3f8f6}.pill{display:inline-flex;align-items:center;justify-content:center;width:max-content;min-height:28px;padding:0 10px;border-radius:999px;font-weight:900}.p0{background:#ffe5e5;color:#8f1d1d}.p1{background:#dcf8ef;color:#1d5f4c}.p2{background:#fff3cb;color:#6b5a1d}.推进中{background:var(--green);color:white}.风险中{background:var(--amber);color:white}.暂停{background:var(--slate);color:white}.已完成{background:var(--blue);color:white}.detail{padding:20px;align-self:start}.detailTop{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.detail h3{font-size:26px;margin:4px 0 0}.info{border:1px solid #e2e8f0;border-radius:12px;background:#f9fbfd;padding:14px;margin-top:12px}.info span{display:block;color:#68778b;font-weight:900;margin-bottom:6px}.info p{margin:0;line-height:1.65}.risk{background:#fffaf3;border-color:#f0d1a7}.two{display:grid;grid-template-columns:1fr 1fr;gap:12px}.logList,.weekList{display:grid;gap:12px;padding:18px 20px}.mini{padding:14px;border-radius:12px;border:1px solid #e5ebf2;background:#fbfdff}.mini h4{margin:0 0 8px}.mini p,.mini li{color:#405066;line-height:1.7}.hidden{display:none}@media(max-width:1100px){.shell{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:680px){.side,.work{padding:16px}.hero{flex-direction:column}.hero h2{font-size:34px}.stats{grid-template-columns:repeat(2,1fr)}.two{grid-template-columns:1fr}.stamp{white-space:normal}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <aside class="side">
+      <div class="brand"><div class="mark">项</div><div><p>项目中心</p><h1>项目看板</h1></div></div>
+      <input id="search" class="search" placeholder="搜索项目、负责人、风险" />
+      <div class="nav">
+        <button class="active" data-view="overview">整体看板</button>
+        <button data-view="projects">单项目</button>
+        <button data-view="weekly">周报</button>
+        <button data-view="logs">每日工作日志</button>
+      </div>
+      <div class="filters">
+        <button class="active" data-filter="全部">全部</button>
+        <button data-filter="P0">P0</button>
+        <button data-filter="P1">P1</button>
+        <button data-filter="P2">P2</button>
+        <button data-filter="风险中">风险</button>
+      </div>
+    </aside>
+    <section class="work">
+      <header class="hero"><div><p class="eyebrow">本地 Markdown 工作区 · 静态同步版</p><h2>项目推进看板</h2><p>聚焦优先级、项目状态、负责人、当前阶段、风险和下一步动作，适合项目中心内部日常推进与管理层汇报。</p></div><div class="stamp">更新时间：2026-06-12</div></header>
+      <section id="overview"></section>
+      <section id="projects" class="hidden"></section>
+      <section id="weekly" class="hidden"></section>
+      <section id="logs" class="hidden"></section>
+    </section>
+  </main>
+  <script>
+    const projects=[
+      {id:'yumiaochong',name:'渝秒充随单充',priority:'P0',status:'推进中',owner:'张欢',stage:'方案确认',progress:'已约周五 15:30 沟通前端随单链路，当前领导侧确认无卡点。',risk:'关键在于对方是否能明确前端用户路径、购买入口和开发承接方式。',next:'准备沟通问题清单，确认链路后输出我方产品链路给对方开发。',node:'周五 15:30',updated:'2026-06-12'},
+      {id:'kunlun',name:'昆仑网电充电生态',priority:'P1',status:'推进中',owner:'张欢',stage:'方案撰写',progress:'项目重启，高攀负责昆仑网电数字化与平台建设，自有桩约 10 万根。',risk:'对方明确不要前置费用，需要设计可接受的分成方案；6月底至7月上线窗口较紧。',next:'约 15 天内完成存取/合作方案，覆盖线下检测方案、商务分成口径和生态叙事。',node:'15天内方案',updated:'2026-06-12'},
+      {id:'cheche',name:'车车科技保险合作',priority:'P1',status:'推进中',owner:'严相',stage:'材料反馈',progress:'新能源汽车保险合作材料已发送，等待车车科技反馈和样本测试安排。',risk:'需验证数据可用性、授权边界、营销转化和权益产品链路。',next:'跟进对方反馈，安排样本数据测试。',node:'等待反馈',updated:'2026-06-12'},
+      {id:'xianyu',name:'闲鱼估值',priority:'P1',status:'推进中',owner:'张欢',stage:'数科反馈',progress:'车辆估值材料已给到数科，咸鱼/车e估合同签署已完成。',risk:'数科是否认可车e估-高德链路证明力仍待反馈。',next:'等待数科对材料、合作入库和车e估链路反馈。',node:'数科反馈',updated:'2026-06-12'},
+      {id:'finance',name:'金融贷中',priority:'P1',status:'推进中',owner:'张欢',stage:'外部沟通',progress:'产品 PPT、字段及报告 Demo 已给九音，九音仍在与客户沟通。',risk:'推进节奏依赖九音与客户沟通，不适合作为当日 Delay 追踪。',next:'等待九音客户沟通结果。',node:'客户反馈',updated:'2026-06-12'},
+      {id:'hls',name:'汇隆思天猫/高德',priority:'P1',status:'风险中',owner:'严相',stage:'价格调整',progress:'产品合作已签约，汇隆思技术开发完成，当前价格可能需要调整。',risk:'价格口径未确认会影响后续对外沟通和排期推进。',next:'先与领导沟通价格口径，再继续推进淘天/高德排期。',node:'价格确认',updated:'2026-06-12'},
+      {id:'etc',name:'ETC充电券',priority:'P1',status:'风险中',owner:'严相',stage:'合同审核',progress:'中保对账完成，ETC 补充协议仍在审核中。',risk:'合同断档期间业务惯性运转，但缺少协议保障。',next:'持续跟进 ETC 法务审核和中保开票。',node:'法务审核',updated:'2026-06-12'},
+      {id:'ershou',name:'二手车线索',priority:'P1',status:'暂停',owner:'严相',stage:'暂缓推进',progress:'九音近期较忙，已共识先不推进，暂停本周测试催办。',risk:'6月完成1-2家消纳方合作和收支平衡目标存在顺延风险。',next:'待九音恢复窗口后重新确认测试启动安排。',node:'待恢复',updated:'2026-06-12'},
+      {id:'chassis',name:'猿金刚底盘检测',priority:'P1',status:'推进中',owner:'杨宛博',stage:'签约中',progress:'协议基本完成，进入签约流程。',risk:'签约完成后若宣传物料和试点启动材料不足，会影响落地效率。',next:'推动合同签署，并同步设计宣传物料。',node:'签约完成',updated:'2026-06-12'},
+      {id:'static',name:'静态数据',priority:'P1',status:'已完成',owner:'张欢',stage:'入库完成',progress:'静态数据已完成数科合作入库。',risk:'后续仍可能追问公共来源证明、数据合规边界和客户使用场景。',next:'等待九音/数科入库后的评估反馈。',node:'等待反馈',updated:'2026-06-12'},
+      {id:'pile',name:'充电桩金融',priority:'P2',status:'推进中',owner:'张欢',stage:'客户沟通准备',progress:'本周已完成一次会议，后续由对方约客户再进一步具体沟通。',risk:'客户需求、业务逻辑和合作边界仍待补齐。',next:'等待对方约客户后进一步沟通。',node:'客户沟通',updated:'2026-06-12'}
+    ];
+    let filter='全部',view='overview',q='',active=projects[0].id;
+    const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+    function filtered(){return projects.filter(p=>(filter==='全部'||p.priority===filter||p.status===filter)&&JSON.stringify(p).toLowerCase().includes(q.toLowerCase()))}
+    function badge(text,type=text){return `<span class="pill ${type}">${text}</span>`}
+    function renderStats(list){const s={total:projects.length,p0:projects.filter(p=>p.priority==='P0').length,p1:projects.filter(p=>p.priority==='P1').length,risk:projects.filter(p=>p.status==='风险中').length,paused:projects.filter(p=>p.status==='暂停').length,done:projects.filter(p=>p.status==='已完成').length};return `<div class="stats"><div class="stat"><span>项目总数</span><b>${s.total}</b></div><div class="stat"><span>P0</span><b>${s.p0}</b></div><div class="stat"><span>P1</span><b>${s.p1}</b></div><div class="stat"><span>风险中</span><b>${s.risk}</b></div><div class="stat"><span>暂停</span><b>${s.paused}</b></div><div class="stat"><span>已完成</span><b>${s.done}</b></div></div>`}
+    function table(list){return `<div class="card"><div class="head"><h3>项目清单</h3><b>${list.length} 个</b></div><div class="table"><div class="row header"><span>项目</span><span>优先级</span><span>状态</span><span>负责人</span><span>阶段</span><span>节点</span></div>${list.map(p=>`<button class="row item ${p.id===active?'selected':''}" onclick="active='${p.id}';render()"><strong>${p.name}</strong>${badge(p.priority,p.priority.toLowerCase())}${badge(p.status,p.status)}<span>${p.owner}</span><span>${p.stage}</span><span>${p.node}</span></button>`).join('')}</div></div>`}
+    function detail(p){return `<aside class="card detail"><div class="detailTop"><div><p class="eyebrow">${p.priority} · ${p.owner}</p><h3>${p.name}</h3></div>${badge(p.status,p.status)}</div><div class="two"><div class="info"><span>当前阶段</span><p>${p.stage}</p></div><div class="info"><span>下一关键节点</span><p>${p.node}</p></div></div><div class="info"><span>最新进展</span><p>${p.progress}</p></div><div class="info risk"><span>当前风险</span><p>${p.risk}</p></div><div class="info"><span>下一步动作</span><p>${p.next}</p></div><div class="info"><span>更新时间</span><p>${p.updated}</p></div></aside>`}
+    function overview(){const list=filtered();const p=list.find(x=>x.id===active)||list[0]||projects[0];return renderStats(list)+`<div class="grid">${table(list)}${detail(p)}</div>`}
+    function render(){['overview','projects','weekly','logs'].forEach(id=>$('#'+id).classList.toggle('hidden',id!==view));if(view==='overview'||view==='projects'){$('#'+view).innerHTML=overview()}if(view==='weekly'){$('#weekly').innerHTML=`<div class="card"><div class="head"><h3>本周周报</h3><span>2026-06-12</span></div><div class="weekList"><div class="mini"><h4>本周重点</h4><ul><li>渝秒充周五沟通前端随单链路。</li><li>昆仑网电重启，15天内完成方案。</li><li>车车科技保险合作材料已发送。</li><li>闲鱼估值材料已提交，车e估合同已完成。</li></ul></div><div class="mini"><h4>风险与待协调</h4><ul><li>汇隆思价格口径需领导确认。</li><li>ETC合同仍在法务审核。</li><li>二手车线索暂缓推进。</li></ul></div></div></div>`}if(view==='logs'){$('#logs').innerHTML=`<div class="card"><div class="head"><h3>每日工作日志</h3><span>同步记录</span></div><div class="logList"><div class="mini"><h4>2026-06-12 GitHub 部署</h4><p>将项目看板整理为 GitHub Pages 可访问版本，支持手机和电脑查看。</p></div><div class="mini"><h4>2026-06-11 项目进展同步</h4><p>更新渝秒充、昆仑网电、车车科技、闲鱼估值、汇隆思、ETC、充电桩金融等项目状态。</p></div></div></div>`}}
+    $$('.nav button').forEach(b=>b.onclick=()=>{$$('.nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');view=b.dataset.view;render()});$$('.filters button').forEach(b=>b.onclick=()=>{$$('.filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;render()});$('#search').oninput=e=>{q=e.target.value;render()};render();
+  </script>
+</body>
+</html>
