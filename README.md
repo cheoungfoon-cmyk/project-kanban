@@ -16,3 +16,7 @@ https://cheoungfoon-cmyk.github.io/project-kanban/
 ## 更新方式
 
 后续如果要更新线上内容，直接更新 `index.html` 中的项目数据并提交到 `main` 分支即可。
+
+## 部署记录
+
+- 2026-06-12 12:12：Pages 来源已切换为 GitHub Actions 后，触发重新部署。
