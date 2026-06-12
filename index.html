@@ -1,72 +1,53 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>项目整体看板</title>
-  <style>
-    :root{--bg:#071827;--panel:#0c2234;--panel2:#102b3e;--line:#1e4a63;--ink:#eaf7ff;--muted:#8fb4c8;--cyan:#32d8ff;--green:#3ee0b2;--amber:#ffb25f;--red:#ff6b6b;--blue:#6ca8ff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(circle at 15% 0,#183b56 0,#071827 36%,#04111e 100%);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif}.app{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:24px;background:linear-gradient(180deg,#071827,#0a1d2d);border-right:1px solid var(--line);overflow:auto}.brand{display:flex;gap:14px;align-items:center;margin-bottom:24px}.logo{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--green),var(--blue));box-shadow:0 0 28px rgba(50,216,255,.28);display:grid;place-items:center;font-weight:900}.brand h1{font-size:24px;margin:0}.brand p{margin:3px 0 0;color:var(--muted);font-weight:700}.nav{display:grid;gap:10px;margin:18px 0}.nav a,.filter button{display:block;width:100%;text-align:left;text-decoration:none;border:1px solid rgba(143,180,200,.24);background:rgba(255,255,255,.04);color:var(--ink);border-radius:12px;padding:13px 14px;font-weight:800}.nav a:hover,.filter button:hover,.filter button.active{border-color:var(--cyan);background:rgba(50,216,255,.12)}.filter{display:grid;grid-template-columns:1fr 1fr;gap:10px}.search{width:100%;border:1px solid rgba(143,180,200,.28);border-radius:12px;background:rgba(255,255,255,.05);color:var(--ink);padding:13px 14px;outline:none}.main{padding:28px;overflow:hidden}.hero{border:1px solid var(--line);border-radius:20px;background:linear-gradient(135deg,rgba(16,43,62,.92),rgba(7,24,39,.88));box-shadow:0 20px 80px rgba(0,0,0,.26),inset 0 1px rgba(255,255,255,.08);padding:26px;margin-bottom:20px}.eyebrow{margin:0 0 8px;color:var(--green);font-weight:900}.hero h2{font-size:42px;line-height:1.05;margin:0}.hero p{color:var(--muted);font-weight:700;line-height:1.7}.stats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:18px 0}.stat,.card{border:1px solid var(--line);border-radius:16px;background:rgba(12,34,52,.9);box-shadow:0 16px 54px rgba(0,0,0,.22)}.stat{padding:18px}.stat span{color:var(--muted);font-weight:900}.stat b{display:block;margin-top:8px;font-size:34px;color:var(--ink)}.grid{display:grid;grid-template-columns:minmax(0,1fr) 430px;gap:18px}.card h3{margin:0;padding:18px 20px;border-bottom:1px solid var(--line);font-size:23px}.list{display:grid;gap:12px;padding:16px}.project{border:1px solid rgba(143,180,200,.22);border-radius:14px;background:rgba(255,255,255,.035);padding:14px;cursor:pointer}.project:hover,.project.active{border-color:var(--cyan);background:rgba(50,216,255,.10)}.projectTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.project h4{margin:0 0 8px;font-size:19px}.meta{display:flex;flex-wrap:wrap;gap:8px}.tag{display:inline-flex;align-items:center;border-radius:999px;padding:5px 10px;font-size:13px;font-weight:900;background:rgba(255,255,255,.08);color:var(--ink)}.p0{background:rgba(255,107,107,.18);color:#ffd9d9}.p1{background:rgba(62,224,178,.18);color:#c9fff0}.p2{background:rgba(255,178,95,.18);color:#ffe7c9}.risk{color:#ffd2a7}.done{color:#bfffee}.muted{color:var(--muted)}.project p,.detail p,.detail li,.block li{line-height:1.7;color:#d6e8f2}.detail{position:sticky;top:20px;align-self:start;padding-bottom:16px}.detailBody{padding:16px 20px}.field{border:1px solid rgba(143,180,200,.18);background:rgba(255,255,255,.035);border-radius:12px;padding:12px;margin:12px 0}.field b{display:block;color:var(--green);margin-bottom:6px}.todayGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.block{padding:16px 20px}.block h4{font-size:20px;margin:0 0 10px;color:var(--cyan)}.block ul{margin:0;padding-left:22px}.logItem{border-left:3px solid var(--green);padding:0 0 16px 14px;margin:0 0 16px}.logItem h4{margin:0 0 8px;color:var(--ink)}.footer{padding:24px;color:var(--muted);text-align:center}@media(max-width:1100px){.app{grid-template-columns:1fr}.side{position:relative;height:auto}.grid{grid-template-columns:1fr}.detail{position:relative;top:auto}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.main,.side{padding:16px}.hero h2{font-size:32px}.todayGrid{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.filter{grid-template-columns:1fr}}
-  </style>
-</head>
-<body>
-  <div class="app">
-    <aside class="side">
-      <div class="brand"><div class="logo">项</div><div><h1>项目整体看板</h1><p>截止 2026-06-11 晚间同步</p></div></div>
-      <input id="search" class="search" placeholder="搜索项目、负责人、风险" />
-      <nav class="nav"><a href="#overview">整体看板</a><a href="#today">今日工作看板</a><a href="#projects">单项目详情</a><a href="#logs">每日工作日志</a></nav>
-      <div class="filter"><button class="active" data-filter="全部">全部</button><button data-filter="P0">P0</button><button data-filter="P1">P1</button><button data-filter="P2">P2</button><button data-filter="风险">风险</button><button data-filter="暂停">暂停</button></div>
-    </aside>
-    <main class="main">
-      <section class="hero" id="overview">
-        <p class="eyebrow">项目中心 · GitHub Pages 同步版</p>
-        <h2>项目推进看板</h2>
-        <p>本页已从本地 Markdown 看板数据源更新，覆盖 2026-06-11 晚间同步前后的项目内容：项目库、今日工作看板、每日工作日志、风险与下一步动作。</p>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>项目整体看板</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true"></div>
+          <div>
+            <h1>项目整体看板</h1>
+            <p id="rootPath"></p>
+          </div>
+        </div>
+        <nav class="main-menu" aria-label="主菜单">
+          <button class="menu-item active" data-view="overview">整体看板</button>
+          <button class="menu-item" data-view="projects">单项目</button>
+          <button class="menu-item" data-view="weekly">周报</button>
+          <button class="menu-item" data-view="logs">每日工作日志</button>
+          <button class="menu-item" data-view="team">人员管理</button>
+        </nav>
+        <label class="search">
+          <span>搜索</span>
+          <input id="searchInput" type="search" placeholder="项目、风险、下一步">
+        </label>
+        <div class="filters" role="group" aria-label="项目筛选">
+          <button class="filter active" data-filter="all">全部</button>
+          <button class="filter" data-filter="P0">P0</button>
+          <button class="filter" data-filter="P1">P1</button>
+          <button class="filter" data-filter="风险">风险</button>
+        </div>
+        <div id="sideList" class="project-nav" aria-label="当前视图列表"></div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">本地 Markdown 工作区</p>
+            <h2>项目推进看板</h2>
+          </div>
+          <div class="stats" id="stats"></div>
+        </header>
+
+        <section id="viewRoot"></section>
       </section>
-      <section class="stats" id="stats"></section>
-      <section class="card" id="today"><h3>今日工作看板 · 2026-06-11 周四晚间二次项目进展同步版</h3><div class="todayGrid" id="todayGrid"></div></section>
-      <section class="grid" id="projects" style="margin-top:18px"><div class="card"><h3>单项目列表</h3><div class="list" id="projectList"></div></div><aside class="card detail" id="detail"></aside></section>
-      <section class="card" id="logs" style="margin-top:18px"><h3>每日工作日志</h3><div class="block" id="logList"></div></section>
-      <div class="footer">线上看板数据来源：本地 Markdown 项目库 / md-kanban/public/board.json</div>
     </main>
-  </div>
-<script>
-const projects=[
-{title:'随单充项目',level:'P0',status:'推进中',owner:'张欢',updated:'2026-06-11',stage:'产品开发/联调测试',partners:'蚂蚁数科、渝秒充、喵充充、壹电利',progress:'渝秒充产品 4月29日上线但随单动作未上线；已与领导沟通确认当前无领导侧卡点，已约周五 15:30 沟通前端随单链路。喵充充因家充平台充电数据缺失暂不重点关注。壹电利合同已回，进入合同修改，下周线上技术对接。',risk:'渝秒充关键在确认前端用户路径、购买入口和对方开发承接方式；喵充充可能无法满足随单产品入参；壹电利需明确数据字段、接口边界和排期。',next:'准备周五 15:30 前端随单链路沟通；壹电利推进合同修改并准备下周技术对接。'},
-{title:'保险入会线索项目',level:'P1',status:'运营中',owner:'张欢',updated:'2026-06-03',stage:'运营验证',partners:'上海合作方、常岳、蚂蚁数科、平安',progress:'当前业务流程正常，接口正常推送线索；结算价格为数科给常岳 4.1 元/条，常岳保留 10%，剩余给下游。',risk:'上海和数科可直接沟通，可能跳过常岳造成信息不对称；平安接口无效线索原因仍由数科排查。',next:'等待数科排查无效线索原因，补齐有效/无效原因分类和复盘机制。'},
-{title:'车车科技保险合作项目',level:'P1',status:'材料已发送，等待反馈',owner:'严相',updated:'2026-06-11',stage:'材料反馈',partners:'车车科技、常岳',progress:'6月10日完成新能源汽车保险合作方案讨论，确认继续探索数据类、营销类和权益类合作；6月11日相关材料已发送确认。',risk:'需验证常岳数据在保险场景中的可用性、授权边界、合规口径和车车科技侧真实承接路径。',next:'等待车车科技反馈，后续安排样本数据测试，与车险数据进行匹配验证。'},
-{title:'车生活AI Agent项目',level:'P1',status:'孵化中',owner:'张欢',updated:'2026-06-03',stage:'等待九音节奏',partners:'常岳、蚂蚁数科、支付宝车生活',progress:'当前待推动，等待九音节奏。',risk:'推进节奏依赖九音和支付宝车生活侧安排，数据调用边界、产品形态和用户触点尚未明确。',next:'暂无主动动作，等待九音确认节奏，后续补齐产品需求和数据调用方式。'},
-{title:'ETC充电券项目',level:'P1',status:'上线项目（常态化运营，待续签确认）',owner:'严相',updated:'2026-06-11',stage:'对账与续签',partners:'中保车服、ETC',progress:'中保对账已完成，截至5月底使用 20493.9 元；ETC 补充协议仍在法务审核中。',risk:'合同断档期间业务可惯性运转，但缺少协议保障；余额沉淀、毛利折扣和运营监控需关注。',next:'跟进惠斌开票、营业执照审批和 ETC 法务审核。'},
-{title:'充电生态项目',level:'P1',status:'分层推进（昆仑网电重启）',owner:'杨宛博',updated:'2026-06-11',stage:'分伙伴推进',partners:'蔚景云、壹电利、星云电子、广汽能源、中石油昆仑网电',progress:'壹电利合同修改中，下周线上技术对接；昆仑网电项目重启，高攀正式任命，负责数字化与平台建设，自有桩约 10 万根。',risk:'伙伴状态分化：壹电利推进中，昆仑网电重启，蔚景云慢，星云/广汽暂停；昆仑网电不要前置费用，只接受分成。',next:'昆仑网电约 15 天内完成存取/合作方案；壹电利继续合同修改和技术对接。'},
-{title:'充电桩金融项目',level:'P1',status:'客户沟通准备中',owner:'张欢',updated:'2026-06-11',stage:'客户沟通准备',partners:'待补充',progress:'本周已完成一次会议，后续由对方约客户再进一步具体沟通。',risk:'客户需求、业务逻辑和合作边界仍待补齐。',next:'等待对方约客户后进一步沟通。'},
-{title:'底盘检测项目',level:'P1',status:'分层推进',owner:'杨宛博',updated:'2026-06-11',stage:'签约与试点',partners:'大地保险、中保车服、电暴猿/猿金刚',progress:'中保车服车车快修推不动，已同步领导，暂不主动推进；猿金刚协议基本完成，走签约中。',risk:'中保车服首单迟迟未启动；猿金刚签约后若宣传物料和试点启动材料不足，会影响落地效率。',next:'猿金刚推动合同签署并同步设计宣传物料；中保车服暂不主动推进。'},
-{title:'二手车线索项目',level:'P1',status:'暂缓推进',owner:'严相',updated:'2026-06-11',stage:'暂停本周催办',partners:'蚂蚁数科、华夏、瓜子、优信、北京淘车',progress:'九音近期较忙，已与相关方形成共识，先不推进，暂停本周测试催办。',risk:'6月完成1-2家消纳方合作及收支平衡目标存在顺延风险。',next:'待九音恢复窗口后重新确认测试启动安排。'},
-{title:'高德权益项目',level:'P1',status:'推进中（待产品重对齐）',owner:'严相',updated:'2026-06-05',stage:'方向重对齐',partners:'汇隆思、高德、常岳',progress:'汇隆思和高德沟通中，高德商务线等待九音安排。',risk:'汇隆思商务负责人对当前产品理解存在偏差。',next:'让严相与对方商务负责人再次沟通产品问题和推进卡点，必要时常岳侧提供支持。'},
-{title:'天猫权益项目',level:'P1',status:'价格调整待沟通',owner:'严相',updated:'2026-06-11',stage:'价格口径确认',partners:'汇隆思、淘天系、常岳',progress:'常岳和汇隆思产品合作已签约，汇隆思技术开发完成；当前价格可能需要调整。',risk:'价格口径未确认会影响后续对外沟通、淘天排期和流量导入。',next:'先与领导沟通价格调整口径，再继续推进淘天/高德侧排期。'},
-{title:'家充桩内部汇报方案项目',level:'P1',status:'方案已完成',owner:'张欢',updated:'2026-06-11',stage:'方案确认',partners:'蚂蚁数科、常岳',progress:'本周已完成家充桩内部汇报方案。',risk:'后续项目边界、客户对象、合作模式和资源投入仍需等待九音/数科反馈。',next:'等待九音/数科侧对方案结构、业务逻辑和内部汇报口径反馈。'},
-{title:'金融贷中项目',level:'P1',status:'孵化中',owner:'张欢',updated:'2026-06-11',stage:'外部沟通中',partners:'常岳、蚂蚁数科、金融保险渠道',progress:'产品 PPT、字段及报告 Demo 已给到九音；九音仍在与客户沟通，属于外部客户沟通节奏，不计入今日 Delay。',risk:'推进节奏依赖九音侧渠道安排，客户/渠道信息尚未明确。',next:'等待九音节奏安排，反馈后明确客户、方案版本、交付边界和时间节点。'},
-{title:'静态数据项目',level:'P1',status:'数科合作入库已完成',owner:'张欢',updated:'2026-06-11',stage:'入库完成',partners:'蚂蚁数科、常岳',progress:'静态数据项目已完成数科合作入库；此前数据来源说明和对外客户合作协议脱敏资料已提交九音。',risk:'后续仍可能追问公共来源证明、数据合规边界和客户使用场景。',next:'跟进九音/数科对合作入库后的评估反馈及补充材料要求。'},
-{title:'闲鱼估值项目',level:'P1',status:'数科反馈等待中',owner:'张欢',updated:'2026-06-11',stage:'合同签署/材料反馈',partners:'蚂蚁数科、闲鱼、车e估、高德',progress:'车辆估值材料已给到数科；咸鱼/车e估合同签署已完成，形成“常岳供产品给车e估、车e估供给高德”的链路证明。',risk:'数科此前认为现有客户案例规模不足；车e估合同完成后，关键在数科是否认可该链路证明力。',next:'等待数科对车辆估值材料、合作入库和车e估-高德链路反馈。'}
-];
-const today={
-'今日必须完成':['渝秒充：已约周五 15:30 沟通前端随单链路，提前准备我方“充电中购买/随单动作”产品链路问题清单。','昆仑网电：项目重启，张欢负责在约15天内完成存取/合作方案，沉淀“高攀正式任命、10万根自有桩、短期复用云快充同类线下检测方案、6月底-7月上线、不要前置费用可分成”的推进口径。','车车科技保险合作：材料发送确认已完成，等待后续反馈和样本测试安排。','闲鱼估值：今日已将材料给到数科；咸鱼/车e估合同签署已完成，等待数科反馈。','静态数据：数科合作入库已完成，等待数科侧进一步评估或补充要求。','家充桩内部汇报方案：本周方案已完成，等待九音/数科侧反馈。'],
-'今日推进事项':['充电生态：壹电利合同修改中，下周线上技术对接会议；昆仑网电由暂停改为重启推进。','底盘检测：中保车服车车快修推不动，已同步领导，暂不主动推进；猿金刚协议基本完成，走签约中，同时需要设计宣传物料。','二手车线索：九音较忙，已共识先不推进，暂停本周测试催办。','汇隆思（天猫/高德）：当前需调整价格，先与领导沟通价格口径，再继续推进汇隆思/淘天/高德侧排期。','充电券：中保对账已完成，截至5月底使用20493.9元，跟进惠斌开票、营业执照审批和ETC法务审核。'],
-'等待反馈事项':['渝秒充周五 15:30 前端随单链路沟通结果。','金融贷中：九音仍在与客户沟通，属于外部节奏等待，不划为 Delay。','闲鱼估值：材料已给到数科，车e估合同签署已完成，等待数科对材料和链路的反馈。','静态数据数科合作入库后的评估反馈。','车车科技保险合作材料发送确认已完成，等待对方后续反馈。','壹电利合同修改结果及下周技术对接会议时间。','昆仑网电：约15天内由张欢完成存取/合作方案。','汇隆思价格调整口径待与领导沟通。','ETC补充协议法务审核结果。','充电桩金融：本周已开会，等待对方约客户后进一步沟通。'],
-'风险提醒':['随单充产品尚未跑出足够业务量，数科商务暂停外拓，短期必须聚焦随单动作跑通。','渝秒充当前无领导侧卡点，关键在周五 15:30 是否能把前端随单链路和开发承接方式确认清楚。','喵充充暂时不需重点关注。','昆仑网电不要前置费用，只接受分成模式，需要在约15天内完成存取/合作方案并兼顾6月底-7月上线窗口。','二手车线索已与九音侧形成先不推进共识，6月测试和收支平衡目标需同步调整预期。','汇隆思当前新增价格调整问题，需先与领导确认价格口径，再继续推动淘天/高德侧排期。']
-};
-const logs=[
-{time:'2026-06-11 20:30',title:'项目进展同步与新增项目归档',items:['渝秒充：已约周五下午3点半沟通前端随单链路；当前领导侧无卡点。','二手车线索：九音近期较忙，已形成共识先不推进。','底盘检测：中保车服车车快修推不动，已同步领导；猿金刚协议基本完成，走签约中。','壹电利：合同修改中，下周安排线上技术对接会议。','昆仑网电：项目重启，高攀正式任命，短期复用云快充同类线下检测方案，目标6月底-7月上线。','静态数据与估价产品：已完成数科合作入库。','车车科技保险合作：新增项目，由严相负责。']},
-{time:'2026-06-11 21:05',title:'今日 Delay 事项逐项消化',items:['闲鱼估值：材料已给到数科；咸鱼/车e估合同签署已完成。','金融贷中：九音仍在与客户沟通，不计入今日 Delay。','车车科技保险合作：材料发送确认已完成。','昆仑网电：存取/合作方案预计约15天完成，由张欢负责撰写。','汇隆思：价格可能需要调整，需先与领导沟通。','ETC：合同仍在审核中。','充电桩金融：本周已完成会议，后续由对方约客户再沟通。']}
-];
-let filter='全部', query='', active=0;
-const $=s=>document.querySelector(s), $$=s=>Array.from(document.querySelectorAll(s));
-function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-function visible(){return projects.filter(p=>(filter==='全部'||p.level===filter||(filter==='风险'&&(p.status.includes('风险')||p.risk.includes('风险')))||(filter==='暂停'&&(p.status.includes('暂')||p.next.includes('暂')))) && JSON.stringify(p).toLowerCase().includes(query.toLowerCase()))}
-function tag(t,cls=''){return `<span class="tag ${cls}">${esc(t)}</span>`}
-function renderStats(){const counts={total:projects.length,p0:projects.filter(p=>p.level==='P0').length,p1:projects.filter(p=>p.level==='P1').length,p2:projects.filter(p=>p.level==='P2').length,risk:projects.filter(p=>p.status.includes('风险')||p.risk.includes('风险')).length}; $('#stats').innerHTML=`<div class="stat"><span>项目总数</span><b>${counts.total}</b></div><div class="stat"><span>P0</span><b>${counts.p0}</b></div><div class="stat"><span>P1</span><b>${counts.p1}</b></div><div class="stat"><span>P2</span><b>${counts.p2}</b></div><div class="stat"><span>风险相关</span><b>${counts.risk}</b></div>`}
-function renderToday(){ $('#todayGrid').innerHTML=Object.entries(today).map(([k,items])=>`<div class="block"><h4>${esc(k)}</h4><ul>${items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}
-function renderList(){const list=visible(); if(!list[active]) active=0; $('#projectList').innerHTML=list.map((p,i)=>`<div class="project ${i===active?'active':''}" onclick="active=${i};renderList()"><div class="projectTop"><h4>${esc(p.title)}</h4>${tag(p.level,p.level.toLowerCase())}</div><div class="meta">${tag(p.status,p.status.includes('风险')?'risk':'')}${tag(p.owner)}${tag(p.updated)}</div><p>${esc(p.progress)}</p></div>`).join('')||'<div class="block muted">没有匹配项目</div>'; const p=list[active]||projects[0]; $('#detail').innerHTML=`<h3>${esc(p.title)}</h3><div class="detailBody"><div class="meta">${tag(p.level,p.level.toLowerCase())}${tag(p.status)}${tag(p.owner)}${tag(p.updated)}</div><div class="field"><b>合作方</b><p>${esc(p.partners)}</p></div><div class="field"><b>当前阶段</b><p>${esc(p.stage)}</p></div><div class="field"><b>最新进展</b><p>${esc(p.progress)}</p></div><div class="field"><b>当前风险</b><p>${esc(p.risk)}</p></div><div class="field"><b>下一步动作</b><p>${esc(p.next)}</p></div></div>`}
-function renderLogs(){ $('#logList').innerHTML=logs.map(l=>`<div class="logItem"><h4>${esc(l.time)} · ${esc(l.title)}</h4><ul>${l.items.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div>`).join('')}
-$$('.filter button').forEach(b=>b.onclick=()=>{$$('.filter button').forEach(x=>x.classList.remove('active'));b.classList.add('active');filter=b.dataset.filter;active=0;renderList()}); $('#search').oninput=e=>{query=e.target.value;active=0;renderList()}; renderStats();renderToday();renderList();renderLogs();
-</script>
-</body>
+    <script src="app.js" type="module"></script>
+  </body>
 </html>
